@@ -1,0 +1,25 @@
+{
+  "name":              "rvionny/GW2-graphQL-adapter",
+  "description":       "A graphQL adapter for the GW2 public API",
+  "type":              "library",
+  "license":           "BSD",
+  "keywords":          [
+    "graphql",
+    "API",
+    "GW2",
+    "adapter"
+  ],
+  "require": {
+    "php": ">=5.4",
+    "ext-mbstring": "*",
+    "webonyx/graphql-php": "^0.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "rvionny\\Gw2Adapter\\": "src/Gw2-Api/"
+    }
+  },
+  "suggest": {
+    "react/promise": "To use ReactPHP promise adapter"
+  }
+}

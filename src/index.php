@@ -1,0 +1,36 @@
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use \GraphQL\GraphQL;
+use \GraphQL\Schema;
+use rvionny\Gw2Adapter\Types;
+
+#gather query input
+if (isset($_SERVER['CONTENT_TYPE']) && strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false) {
+    $raw = file_get_contents('php://input') ?: '';
+    $data = json_decode($raw, true);
+} else {
+    $data = $_REQUEST;
+}
+$data += ['query' => null, 'variables' => null];
+
+if (null === $data['query']) {
+    $data['query'] = '{hello}';
+}
+
+$appContext = new \rvionny\Gw2Adapter\AppContext();
+
+$schema = new Schema([
+    'query' => Types::query()
+]);
+
+$result = GraphQL::execute(
+    $schema,
+    $data['query'],
+    null,
+    $appContext,
+    (array) $data['variables']
+);
+
+echo json_encode($result);
