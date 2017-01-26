@@ -26,18 +26,15 @@ class ItemType extends ObjectType
                     'rarity' => Types::string(),
                     'vendorValue' => Types::string(),
                     'defaultSkin' => Types::string(),
-                    'gameTypes' => Types::string(),
-                    'flags' => Types::string(),
-                    'restrictions' => Types::string(),
+                    'gameTypes' => Types::listOf(Types::string()),
+                    'flags' => Types::listOf(Types::string()),
+                    'restrictions' => Types::listOf(Types::string()),
                     'name' => Types::string(),
                     'chatLink' => Types::string(),
                     'icon' => Types::string(),
-                    'details' => Types::string(),
+                    'details' => Types::itemDetails(),
                 ];
             },
-            'interfaces' => [
-                Types::node()
-            ],
             'resolveField' => function($value, $args, $context, ResolveInfo $info) {
                 if (method_exists($this, $info->fieldName)) {
                     return $this->{$info->fieldName}($value, $args, $context, $info);

@@ -38,7 +38,7 @@ class Item
         $this->restrictions = $args['restrictions'];
         $this->chatLink = $args['chat_link'];
         $this->icon = $args['icon'];
-        $this->details = $args['details'];
+        $this->details = new ItemDetails($args['details']);
     }
 
     /**

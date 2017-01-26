@@ -16,9 +16,23 @@ class QueryType extends ObjectType
             'fields' => [
                 'item' => [
                     'type' => Types::listOf(Types::item()),
-                    'description' => 'Returns item by id or all if no id is given',
+                    'description' => 'Returns item by id',
                     'args' => [
                         'id' => Types::listOf(Types::id())
+                    ]
+                ],
+                'items' => [
+                    'type' => Types::listOf(Types::item()),
+                    'description' => 'Returns all items',
+                    'args' => [
+                        'offset' => [
+                            'type' => Types::int(),
+                            'defaultValue' => 0
+                        ],
+                        'count' => [
+                            'type' => Types::int(),
+                            'defaultValue' => 10
+                        ]
                     ]
                 ],
                 'hello' => Type::string()
@@ -33,6 +47,11 @@ class QueryType extends ObjectType
     public function item($rootValue, $args)
     {
         return ItemFactory::getItems($args['id']);
+    }
+
+    public function items($rootValue, $args)
+    {
+        return ItemFactory::getItemList($args['offset'], $args['count']);
     }
 
     public function hello()

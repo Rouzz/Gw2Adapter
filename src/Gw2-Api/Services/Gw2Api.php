@@ -19,6 +19,7 @@ class Gw2Api
 
     public static function getItemList()
     {
-
+        $content = file_get_contents('https://api.guildwars2.com/v2/items');
+        return json_decode($content, true);
     }
 }

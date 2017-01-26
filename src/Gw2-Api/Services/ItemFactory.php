@@ -37,8 +37,19 @@ class ItemFactory
         return $return;
     }
 
-    public function getItemList()
+    public static function getItemList($offset, $count)
     {
+        $return = [];
+        $itemList = Gw2Api::getItemList();
+        $itemList = array_slice($itemList, $offset, $count);
+        foreach ($itemList as $id)
+        {
+            if(!isset(self::$items[$id]))
+                self::$items[$id] = new Item(Gw2Api::getItem($id));
 
+            $return[] = self::$items[$id];
+        }
+
+        return $return;
     }
 }

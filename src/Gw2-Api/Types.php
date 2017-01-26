@@ -4,6 +4,7 @@ namespace rvionny\Gw2Adapter;
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\NonNull;
 use GraphQL\Type\Definition\ListOfType;
+use rvionny\Gw2Adapter\Type\ItemDetailsType;
 use rvionny\Gw2Adapter\Type\ItemType;
 use rvionny\Gw2Adapter\Type\QueryType;
 use rvionny\Gw2Adapter\Type\NodeType;
@@ -23,6 +24,7 @@ class Types
     // Object types:
     private static $item;
     private static $query;
+    private static $itemDetails;
 
 
     // Interface types
@@ -42,6 +44,14 @@ class Types
     public static function item()
     {
         return self::$item ?: (self::$item = new ItemType());
+    }
+
+    /**
+     * @return ItemDetailsType
+     */
+    public static function itemDetails()
+    {
+        return self::$itemDetails ?: (self::$itemDetails = new ItemDetailsType());
     }
 
     public static function boolean()
