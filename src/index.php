@@ -23,6 +23,7 @@ $appContext = new \rvionny\Gw2Adapter\AppContext();
 
 $types = [
     Types::weaponDetails(),
+    Types::itemDetails(),
 ];
 
 $schema = new Schema([

@@ -5,6 +5,7 @@ use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\NonNull;
 use GraphQL\Type\Definition\ListOfType;
 use rvionny\Gw2Adapter\Model\WeaponDetails;
+use rvionny\Gw2Adapter\Type\ItemDetailsInterface;
 use rvionny\Gw2Adapter\Type\ItemDetailsType;
 use rvionny\Gw2Adapter\Type\ItemType;
 use rvionny\Gw2Adapter\Type\QueryType;
@@ -28,6 +29,7 @@ class Types
     private static $query;
     private static $itemDetails;
     private static $weaponDetails;
+    private static $itemDetailsInterface;
 
 
     // Interface types
@@ -47,6 +49,14 @@ class Types
     public static function item()
     {
         return self::$item ?: (self::$item = new ItemType());
+    }
+
+    /**
+     * @return ItemDetailsInterface
+     */
+    public static function itemDetailsInterface()
+    {
+        return self::$itemDetailsInterface ?: (self::$itemDetailsInterface = new ItemDetailsInterface());
     }
 
     /**

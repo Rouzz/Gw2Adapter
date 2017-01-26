@@ -1,30 +1,35 @@
 <?php
 namespace rvionny\Gw2Adapter\Type;
 
-use GraphQL\Type\Definition\InterfaceType;
-use rvionny\Gw2Adapter\Model\WeaponDetails;
 use rvionny\Gw2Adapter\Types;
+use GraphQL\Type\Definition\ObjectType;
+use GraphQL\Type\Definition\ResolveInfo;
 
-class ItemDetailsType extends InterfaceType
+class ItemDetailsType extends ObjectType
 {
     public function __construct()
     {
         $config = [
             'name' => 'ItemDetails',
-            'fields' => [
-                'type' => Types::string()
+            'description' => 'An item in the game',
+            'fields' => function() {
+                return [
+                    'type' => Types::string(),
+                ];
+            },
+            'interfaces' => [
+                Types::itemDetailsInterface()
             ],
-            'resolveType' => [$this, 'resolveNodeType']
+            'resolveField' => function($value, $args, $context, ResolveInfo $info) {
+                if (method_exists($this, $info->fieldName)) {
+                    return $this->{$info->fieldName}($value, $args, $context, $info);
+                } elseif (method_exists($value, $info->fieldName)) {
+                    return $value->{$info->fieldName}();
+                } else {
+                    return $value->{$info->fieldName};
+                }
+            }
         ];
         parent::__construct($config);
-    }
-
-    public function resolveNodeType($object)
-    {
-        if ($object instanceof WeaponDetails) {
-            return Types::weaponDetails();
-        }
-
-        return Types::weaponDetails();
     }
 }

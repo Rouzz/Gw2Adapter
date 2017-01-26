@@ -1,0 +1,40 @@
+{
+    item(id: ["1", "2"]) {
+    id,
+        name,
+        type,
+        rarity,
+        vendorValue,
+        defaultSkin,
+        gameTypes,
+        flags,
+        restrictions,
+        chatLink,
+        icon,
+        details{
+        type
+            ... on WeaponDetails{
+            damageType
+        }
+    }
+},
+    items(offset: 2, count: 2) {
+    id,
+        name,
+        type,
+        rarity,
+        vendorValue,
+        defaultSkin,
+        gameTypes,
+        flags,
+        restrictions,
+        chatLink,
+        icon,
+        details{
+        type
+            ... on WeaponDetails{
+            damageType
+        }
+    }
+}
+}

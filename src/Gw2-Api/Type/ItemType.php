@@ -32,7 +32,7 @@ class ItemType extends ObjectType
                     'name' => Types::string(),
                     'chatLink' => Types::string(),
                     'icon' => Types::string(),
-                    'details' => Types::itemDetails(),
+                    'details' => Types::itemDetailsInterface(),
                 ];
             },
             'resolveField' => function($value, $args, $context, ResolveInfo $info) {

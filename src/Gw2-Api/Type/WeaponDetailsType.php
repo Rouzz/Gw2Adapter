@@ -19,7 +19,7 @@ class WeaponDetailsType extends ObjectType
                 ];
             },
             'interfaces' => [
-                Types::itemDetails()
+                Types::itemDetailsInterface()
             ],
             'resolveField' => function($value, $args, $context, ResolveInfo $info) {
                 if (method_exists($this, $info->fieldName)) {
