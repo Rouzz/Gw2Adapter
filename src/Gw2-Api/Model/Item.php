@@ -38,7 +38,11 @@ class Item
         $this->restrictions = $args['restrictions'];
         $this->chatLink = $args['chat_link'];
         $this->icon = $args['icon'];
-        $this->details = new ItemDetails($args['details']);
+
+        if($this->type() == 'Weapon')
+            $this->details = new WeaponDetails($args['details']);
+        else
+            $this->details = new ItemDetails($args['details']);
     }
 
     /**

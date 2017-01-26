@@ -8,17 +8,24 @@ namespace rvionny\Gw2Adapter\Model;
  * Date: 1/24/17
  * Time: 3:05 PM
  */
-class ItemDetails
+class WeaponDetails extends ItemDetails
 {
     protected $type;
+    protected $damageType;
 
     public function __construct($args)
     {
-        $this->type = $args['type'];
+        parent::__construct($args);
+        $this->damageType = $args['damage_type'];
     }
 
     public function type()
     {
         return $this->type;
+    }
+
+    public function damageType()
+    {
+        return $this->damageType;
     }
 }
