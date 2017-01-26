@@ -21,8 +21,13 @@ if (null === $data['query']) {
 
 $appContext = new \rvionny\Gw2Adapter\AppContext();
 
+$types = [
+    Types::weaponDetails(),
+];
+
 $schema = new Schema([
-    'query' => Types::query()
+    'query' => Types::query(),
+    'types' => $types
 ]);
 
 $result = GraphQL::execute(
