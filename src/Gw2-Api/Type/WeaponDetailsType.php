@@ -18,7 +18,9 @@ class WeaponDetailsType extends ObjectType
                     'damageType' => Types::string()
                 ];
             },
-            'interfaces' => Types::itemDetails(),
+            'interfaces' => [
+                Types::itemDetails()
+            ],
             'resolveField' => function($value, $args, $context, ResolveInfo $info) {
                 if (method_exists($this, $info->fieldName)) {
                     return $this->{$info->fieldName}($value, $args, $context, $info);
