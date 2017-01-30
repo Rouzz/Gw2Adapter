@@ -17,6 +17,12 @@ class Gw2Api
         return json_decode($content, true);
     }
 
+    public static function getItems($ids)
+    {
+        $content = file_get_contents('https://api.guildwars2.com/v2/items?ids=' . implode(",", $ids));
+        return json_decode($content, true);
+    }
+
     public static function getItemList()
     {
         $content = file_get_contents('https://api.guildwars2.com/v2/items');

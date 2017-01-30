@@ -25,11 +25,12 @@ class ItemFactory
 
     public static function getItems($idList)
     {
+        $itemList = Gw2Api::getItems($idList);
         $return = [];
-        foreach ($idList as $id)
+        foreach ($idList as $key => $id)
         {
             if(!isset(self::$items[$id]))
-                self::$items[$id] = new Item(Gw2Api::getItem($id));
+                self::$items[$id] = new Item($itemList[$key]);
 
             $return[] = self::$items[$id];
         }
@@ -40,12 +41,14 @@ class ItemFactory
     public static function getItemList($offset, $count)
     {
         $return = [];
-        $itemList = Gw2Api::getItemList();
-        $itemList = array_slice($itemList, $offset, $count);
-        foreach ($itemList as $id)
+        $idList = Gw2Api::getItemList();
+        $idList = array_slice($idList, $offset, $count);
+
+        $itemList = Gw2Api::getItems($idList);
+        foreach ($idList as $key => $id)
         {
             if(!isset(self::$items[$id]))
-                self::$items[$id] = new Item(Gw2Api::getItem($id));
+                self::$items[$id] = new Item($itemList[$key]);
 
             $return[] = self::$items[$id];
         }
