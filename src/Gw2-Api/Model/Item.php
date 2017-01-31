@@ -2,6 +2,9 @@
 
 namespace rvionny\Gw2Adapter\Model;
 
+use rvionny\Gw2Adapter\Model\Details\WeaponDetails;
+use rvionny\Gw2Adapter\Model\Details\ItemDetails;
+
 /**
  * Created by PhpStorm.
  * User: rvionny
@@ -32,7 +35,7 @@ class Item
         $this->level = $args['level'];
         $this->rarity = $args['rarity'];
         $this->vendorValue = $args['vendor_value'];
-        $this->defaultSkin = $args['default_skin'];
+        $this->defaultSkin = @$args['default_skin'];
         $this->gameTypes = $args['game_types'];
         $this->flags = $args['flags'];
         $this->restrictions = $args['restrictions'];

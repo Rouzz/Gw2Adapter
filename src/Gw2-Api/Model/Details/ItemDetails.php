@@ -1,6 +1,6 @@
 <?php
 
-namespace rvionny\Gw2Adapter\Model;
+namespace rvionny\Gw2Adapter\Model\Details;
 
 /**
  * Created by PhpStorm.
@@ -14,7 +14,7 @@ class ItemDetails
 
     public function __construct($args)
     {
-        $this->type = $args['type'];
+        $this->type = @$args['type'];
     }
 
     public function type()

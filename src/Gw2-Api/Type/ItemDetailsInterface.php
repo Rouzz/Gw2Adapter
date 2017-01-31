@@ -2,7 +2,7 @@
 namespace rvionny\Gw2Adapter\Type;
 
 use GraphQL\Type\Definition\InterfaceType;
-use rvionny\Gw2Adapter\Model\WeaponDetails;
+use rvionny\Gw2Adapter\Model\Details\WeaponDetails;
 use rvionny\Gw2Adapter\Types;
 
 class ItemDetailsInterface extends InterfaceType

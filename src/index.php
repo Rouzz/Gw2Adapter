@@ -7,7 +7,13 @@ use \GraphQL\Schema;
 use rvionny\Gw2Adapter\Types;
 
 #gather query input
-if (isset($_SERVER['CONTENT_TYPE']) && strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false) {
+var_dump($_SERVER);
+if (
+    isset($_SERVER['CONTENT_TYPE']) && strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false
+    ||
+    isset($_SERVER['HTTP_CONTENT_TYPE']) && strpos($_SERVER['HTTP_CONTENT_TYPE'], 'application/json') !== false
+
+) {
     $raw = file_get_contents('php://input') ?: '';
     $data = json_decode($raw, true);
 } else {

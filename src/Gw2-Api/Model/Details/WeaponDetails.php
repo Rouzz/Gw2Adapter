@@ -1,6 +1,6 @@
 <?php
 
-namespace rvionny\Gw2Adapter\Model;
+namespace rvionny\Gw2Adapter\Model\Details;
 
 /**
  * Created by PhpStorm.
