@@ -15,7 +15,9 @@ class WeaponDetailsType extends ObjectType
             'fields' => function() {
                 return [
                     'type' => Types::string(),
-                    'damageType' => Types::string()
+                    'damageType' => Types::string(),
+                    'minPower' => Types::int(),
+                    'maxPower' => Types::int()
                 ];
             },
             'interfaces' => [
