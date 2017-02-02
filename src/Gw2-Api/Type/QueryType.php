@@ -4,6 +4,7 @@ namespace rvionny\Gw2Adapter\Type;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
+use rvionny\Gw2Adapter\Services\CharacterFactory;
 use rvionny\Gw2Adapter\Services\ItemFactory;
 use rvionny\Gw2Adapter\Types;
 
@@ -35,6 +36,10 @@ class QueryType extends ObjectType
                         ]
                     ]
                 ],
+                'characters' => [
+                    'type' => Types::listOf(Types::item()),
+                    'description' => 'Returns all characters'
+                ],
                 'hello' => Type::string()
             ],
             'resolveField' => function($val, $args, $context, ResolveInfo $info) {
@@ -52,6 +57,11 @@ class QueryType extends ObjectType
     public function items($rootValue, $args)
     {
         return ItemFactory::getItemList($args['offset'], $args['count']);
+    }
+
+    public function characters($rootValue, $args)
+    {
+        return CharacterFactory::getCharacterList();
     }
 
     public function hello()
