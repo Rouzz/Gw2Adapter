@@ -37,7 +37,7 @@ class QueryType extends ObjectType
                     ]
                 ],
                 'characters' => [
-                    'type' => Types::listOf(Types::item()),
+                    'type' => Types::listOf(Types::character()),
                     'description' => 'Returns all characters'
                 ],
                 'hello' => Type::string()

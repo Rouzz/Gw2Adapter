@@ -2,8 +2,7 @@
 
 namespace rvionny\Gw2Adapter\Model;
 
-use rvionny\Gw2Adapter\Model\Details\WeaponDetails;
-use rvionny\Gw2Adapter\Model\Details\ItemDetails;
+use rvionny\Gw2Adapter\Services\ProfessionFactory;
 
 /**
  * Created by PhpStorm.
@@ -30,20 +29,23 @@ class Character
         $this->name = $args['name'];
         $this->race = $args['race'];
         $this->gender = $args['gender'];
-        $this->profession = new Profession($args['profession']);
+        $this->profession = ProfessionFactory::getProfession($args['profession']);
         $this->level = $args['level'];
         $this->guild = $args['guild'];
         $this->age = $args['age'];
         $this->created = $args['created'];
         $this->deaths = $args['deaths'];
-        $this->title = $args['title'];
+        $this->title = @$args['title'];
     }
 
     /**
      * @return mixed
      */
-    public function name()
+    public function __call($name, $args)
     {
-        return $this->name;
+        if(property_exists($this, $name))
+            return $this->{$name};
+        else
+            return null;
     }
 }

@@ -4,7 +4,7 @@ namespace rvionny\Gw2Adapter;
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\NonNull;
 use GraphQL\Type\Definition\ListOfType;
-use rvionny\Gw2Adapter\Model\WeaponDetails;
+use rvionny\Gw2Adapter\Type\CharacterType;
 use rvionny\Gw2Adapter\Type\ItemDetailsInterface;
 use rvionny\Gw2Adapter\Type\ItemDetailsType;
 use rvionny\Gw2Adapter\Type\ItemType;
@@ -26,6 +26,7 @@ class Types
 {
     // Object types:
     private static $item;
+    private static $character;
     private static $query;
     private static $itemDetails;
     private static $weaponDetails;
@@ -41,6 +42,14 @@ class Types
     public static function node()
     {
         return self::$node ?: (self::$node = new NodeType());
+    }
+
+    /**
+     * @return CharacterType
+     */
+    public static function character()
+    {
+        return self::$character ?: (self::$character = new CharacterType());
     }
 
     /**
