@@ -3,6 +3,7 @@
 namespace rvionny\Gw2Adapter\Model;
 
 use rvionny\Gw2Adapter\Services\Gw2Api;
+use rvionny\Gw2Adapter\Services\TraitFactory;
 
 /**
  * Created by PhpStorm.
@@ -51,8 +52,9 @@ class Specialization
         $this->elite = $data['elite'];
         $this->icon = $data['icon'];
         $this->background = $data['background'];
-        $this->minorTraits = $data['minor_traits'];
-        $this->majorTraits = $data['major_traits'];
+
+        $this->minorTraits = TraitFactory::getTraits($data['minor_traits']);
+        $this->majorTraits = TraitFactory::getTraits($data['major_traits']);
 
         $this->loaded = true;
     }

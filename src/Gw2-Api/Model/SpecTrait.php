@@ -19,21 +19,25 @@ class SpecTrait
     protected $description;
     protected $tier;
     protected $slot;
-    protected $facts;
-    protected $traitedFacts;
-    protected $skills;
 
     public function __construct($args)
     {
         $this->id = $args['id'];
         $this->name = $args['name'];
+        $this->icon = $args['icon'];
+        $this->description = $args['description'];
+        $this->tier = $args['tier'];
+        $this->slot = $args['slot'];
     }
 
     /**
      * @return mixed
      */
-    public function name()
+    public function __call($name, $args)
     {
-        return $this->name;
+        if(property_exists($this, $name))
+            return $this->{$name};
+        else
+            return null;
     }
 }

@@ -5,13 +5,13 @@ use rvionny\Gw2Adapter\Types;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\ResolveInfo;
 
-class SpecializationType extends ObjectType
+class TraitType extends ObjectType
 {
     public function __construct()
     {
         $config = [
-            'name' => 'Specialization',
-            'description' => 'A profession specialization',
+            'name' => 'Trait',
+            'description' => 'A specialization trait',
             'fields' => function() {
                 return [
                     'id' => [
@@ -21,10 +21,10 @@ class SpecializationType extends ObjectType
                         }
                     ],
                     'name' => Types::string(),
-                    'elite' => Types::boolean(),
                     'icon' => Types::string(),
-                    'minorTraits' => Types::listOf(Types::specTrait()),
-                    'majorTraits' => Types::listOf(Types::specTrait()),
+                    'description' => Types::string(),
+                    'tier' => Types::int(),
+                    'slot' => Types::string(),
                 ];
             },
             'resolveField' => function($value, $args, $context, ResolveInfo $info) {

@@ -12,6 +12,7 @@ use rvionny\Gw2Adapter\Type\ProfessionType;
 use rvionny\Gw2Adapter\Type\QueryType;
 use rvionny\Gw2Adapter\Type\NodeType;
 use rvionny\Gw2Adapter\Type\SpecializationType;
+use rvionny\Gw2Adapter\Type\TraitType;
 use rvionny\Gw2Adapter\Type\WeaponDetailsType;
 
 /**
@@ -31,6 +32,7 @@ class Types
     private static $character;
     private static $profession;
     private static $specialization;
+    private static $trait;
     private static $query;
     private static $itemDetails;
     private static $weaponDetails;
@@ -70,6 +72,14 @@ class Types
     public static function specialization()
     {
         return self::$specialization ?: (self::$specialization = new SpecializationType());
+    }
+
+    /**
+     * @return TraitType
+     */
+    public static function specTrait()
+    {
+        return self::$trait ?: (self::$trait = new TraitType());
     }
 
     /**
