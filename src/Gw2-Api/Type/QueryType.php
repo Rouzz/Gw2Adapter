@@ -40,6 +40,13 @@ class QueryType extends ObjectType
                     'type' => Types::listOf(Types::character()),
                     'description' => 'Returns all characters'
                 ],
+                'character' => [
+                    'type' => Types::character(),
+                    'description' => 'Returns all characters',
+                    'args' => [
+                        'name' => Types::nonNull(Types::string())
+                    ]
+                ],
                 'hello' => Type::string()
             ],
             'resolveField' => function($val, $args, $context, ResolveInfo $info) {
@@ -62,6 +69,11 @@ class QueryType extends ObjectType
     public function characters($rootValue, $args)
     {
         return CharacterFactory::getCharacterList();
+    }
+
+    public function character($rootValue, $args)
+    {
+        return CharacterFactory::getCharacter($args['name']);
     }
 
     public function hello()

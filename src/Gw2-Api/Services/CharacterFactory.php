@@ -14,6 +14,14 @@ class CharacterFactory
 {
     private static $characters = [];
 
+    public static function getCharacter($name)
+    {
+        if(!isset(self::$characters[$name]))
+            self::$characters[$name] = new Character(Gw2Api::getCharacter($name));
+
+        return self::$characters[$name];
+    }
+
     public static function getCharacterList()
     {
         $return = [];
@@ -21,10 +29,7 @@ class CharacterFactory
 
         foreach ($nameList as $name)
         {
-            if(!isset(self::$characters[$name]))
-                self::$characters[$name] = new Character(Gw2Api::getCharacter($name));
-
-            $return[] = self::$characters[$name];
+            $return[] = self::getCharacter($name);
         }
 
         return $return;

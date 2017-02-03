@@ -8,6 +8,7 @@ use rvionny\Gw2Adapter\Type\CharacterType;
 use rvionny\Gw2Adapter\Type\ItemDetailsInterface;
 use rvionny\Gw2Adapter\Type\ItemDetailsType;
 use rvionny\Gw2Adapter\Type\ItemType;
+use rvionny\Gw2Adapter\Type\ProfessionType;
 use rvionny\Gw2Adapter\Type\QueryType;
 use rvionny\Gw2Adapter\Type\NodeType;
 use rvionny\Gw2Adapter\Type\WeaponDetailsType;
@@ -27,6 +28,7 @@ class Types
     // Object types:
     private static $item;
     private static $character;
+    private static $profession;
     private static $query;
     private static $itemDetails;
     private static $weaponDetails;
@@ -50,6 +52,14 @@ class Types
     public static function character()
     {
         return self::$character ?: (self::$character = new CharacterType());
+    }
+
+    /**
+     * @return ProfessionType
+     */
+    public static function profession()
+    {
+        return self::$profession ?: (self::$profession = new ProfessionType());
     }
 
     /**

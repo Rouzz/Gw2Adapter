@@ -5,27 +5,25 @@ use rvionny\Gw2Adapter\Types;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\ResolveInfo;
 
-class CharacterType extends ObjectType
+class ProfessionType extends ObjectType
 {
     public function __construct()
     {
         $config = [
-            'name' => 'Character',
-            'description' => 'A character',
+            'name' => 'Profession',
+            'description' => 'A character profession',
             'fields' => function() {
                 return [
-                    'name' => [
-                        'type' => Types::string()
+                    'id' => [
+                        'type' => Types::string(),
+                        'resolve' => function($value, $args, $context, ResolveInfo $info) {
+                            return $value->{$info->fieldName}();
+                        }
                     ],
-                    'race' => Types::string(),
-                    'gender' => Types::string(),
-                    'profession' => Types::profession(),
-                    'level' => Types::int(),
-                    'guild' => Types::string(),
-                    'age' => Types::int(),
-                    'created' => Types::string(),
-                    'deaths' => Types::int(),
-                    'title' => Types::int(),
+                    'name' => Types::string(),
+                    'icon' => Types::string(),
+                    'iconBig' => Types::string(),
+                    'specializations' => Types::listOf(Types::int()),
                 ];
             },
             'resolveField' => function($value, $args, $context, ResolveInfo $info) {
