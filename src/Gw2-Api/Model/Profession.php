@@ -49,9 +49,7 @@ class Profession
         $this->icon = $data['icon'];
         $this->iconBig = $data['icon_big'];
 
-        foreach ($data['specializations'] as $specialization) {
-            $this->specializations[] = SpecializationFactory::getSpecialization($specialization);
-        }
+        $this->specializations = SpecializationFactory::getSpecializations($data['specializations']);
 
         $this->loaded = true;
     }

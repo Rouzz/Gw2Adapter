@@ -14,13 +14,28 @@ use rvionny\Gw2Adapter\Model\Specialization;
  */
 class SpecializationFactory
 {
-    private static $professions = [];
+    private static $specializations = [];
 
     public static function getSpecialization($id)
     {
-        if(!isset(self::$professions[$id]))
-            self::$professions[$id] = new Specialization($id);
+        if(!isset(self::$specializations[$id]))
+            self::$specializations[$id] = new Specialization($id);
 
-        return self::$professions[$id];
+        return self::$specializations[$id];
+    }
+
+    public static function getSpecializations($idList)
+    {
+        $specList = Gw2Api::getSpecializations($idList);
+        $return = [];
+        foreach ($idList as $key => $id)
+        {
+            if(!isset(self::$specializations[$id]))
+                self::$specializations[$id] = new Specialization($specList[$key]);
+
+            $return[] = self::$specializations[$id];
+        }
+
+        return $return;
     }
 }

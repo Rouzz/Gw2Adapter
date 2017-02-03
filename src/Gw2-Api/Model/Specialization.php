@@ -23,11 +23,15 @@ class Specialization
 
     protected $loaded;
 
-    public function __construct($id)
+    public function __construct($data)
     {
-        $this->id = $id;
-        $this->minorTraits = array();
-        $this->majorTraits = array();
+        $this->id = $data['id'];
+        $this->name = $data['name'];
+        $this->elite = $data['elite'];
+        $this->icon = $data['icon'];
+        $this->background = $data['background'];
+        $this->minorTraits = $data['minor_traits'];
+        $this->majorTraits = $data['minor_traits'];
         $this->loaded = false;
     }
 
@@ -47,14 +51,8 @@ class Specialization
 
     protected function load()
     {
-        $data = Gw2Api::getSpecialization($this->id);
-        $this->name = $data['name'];
-        $this->elite = $data['elite'];
-        $this->icon = $data['icon'];
-        $this->background = $data['background'];
-
-        $this->minorTraits = TraitFactory::getTraits($data['minor_traits']);
-        $this->majorTraits = TraitFactory::getTraits($data['major_traits']);
+        $this->minorTraits = TraitFactory::getTraits($this->minorTraits);
+        $this->majorTraits = TraitFactory::getTraits($this->majorTraits);
 
         $this->loaded = true;
     }

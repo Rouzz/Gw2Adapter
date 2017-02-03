@@ -46,6 +46,11 @@ class Gw2Api
         return self::makeCall('https://api.guildwars2.com/v2/specializations/'.$id);
     }
 
+    public static function getSpecializations($ids)
+    {
+        return self::makeCall('https://api.guildwars2.com/v2/specializations?ids='.implode(",", $ids));
+    }
+
     public static function getTrait($id)
     {
         return self::makeCall('https://api.guildwars2.com/v2/traits/'.$id);
