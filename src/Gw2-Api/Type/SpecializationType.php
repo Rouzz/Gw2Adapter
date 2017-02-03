@@ -25,6 +25,18 @@ class SpecializationType extends ObjectType
                     'icon' => Types::string(),
                     'minorTraits' => Types::listOf(Types::specTrait()),
                     'majorTraits' => Types::listOf(Types::specTrait()),
+                    'isActive' => [
+                        'type' => Types::boolean(),
+                        'args' => [
+                            'gameType' => Types::nonNull(Types::string())
+                        ],
+                        'resolve' => function($value, $args, $context, ResolveInfo $info) {
+                            if(empty($context->character))
+                                return null;
+
+                            return $context->character->isActiveSpecialization($value->id(), $args['gameType']);
+                        }
+                    ]
                 ];
             },
             'resolveField' => function($value, $args, $context, ResolveInfo $info) {

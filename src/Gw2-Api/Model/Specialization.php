@@ -2,7 +2,6 @@
 
 namespace rvionny\Gw2Adapter\Model;
 
-use rvionny\Gw2Adapter\Services\Gw2Api;
 use rvionny\Gw2Adapter\Services\TraitFactory;
 
 /**
@@ -31,7 +30,7 @@ class Specialization
         $this->icon = $data['icon'];
         $this->background = $data['background'];
         $this->minorTraits = $data['minor_traits'];
-        $this->majorTraits = $data['minor_traits'];
+        $this->majorTraits = $data['major_traits'];
         $this->loaded = false;
     }
 

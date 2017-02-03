@@ -15,7 +15,11 @@ class CharacterType extends ObjectType
             'fields' => function() {
                 return [
                     'name' => [
-                        'type' => Types::string()
+                        'type' => Types::string(),
+                        'resolve' => function($value, $args, $context, ResolveInfo $info) {
+                            $context->character = $value;
+                            return $value->{$info->fieldName}();
+                        }
                     ],
                     'race' => Types::string(),
                     'gender' => Types::string(),

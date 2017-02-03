@@ -23,6 +23,7 @@ class Character
     protected $deaths;
     protected $title;
     protected $equipment;
+    protected $selectedSpecializations;
 
     public function __construct($args)
     {
@@ -36,6 +37,7 @@ class Character
         $this->created = $args['created'];
         $this->deaths = $args['deaths'];
         $this->title = @$args['title'];
+        $this->selectedSpecializations = $args['specializations'];
     }
 
     /**
@@ -47,5 +49,37 @@ class Character
             return $this->{$name};
         else
             return null;
+    }
+
+    /**
+     * function to check if a trait is active for a given game type
+     * @param  int $traitId
+     * @param string $gameType
+     */
+    public function isActiveTrait($traitId, $gameType)
+    {
+        foreach ($this->selectedSpecializations[$gameType] as $selectedSpecialization)
+        {
+            if(in_array($traitId, $selectedSpecialization['traits']))
+                return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * function to check if a specialization is active for a given game type
+     * @param  int $specId
+     * @param string $gameType
+     */
+    public function isActiveSpecialization($specId, $gameType)
+    {
+        foreach ($this->selectedSpecializations[$gameType] as $selectedSpecialization)
+        {
+            if($selectedSpecialization['id'] == $specId)
+                return true;
+        }
+
+        return false;
     }
 }

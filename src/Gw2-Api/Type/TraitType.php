@@ -25,6 +25,18 @@ class TraitType extends ObjectType
                     'description' => Types::string(),
                     'tier' => Types::int(),
                     'slot' => Types::string(),
+                    'isActive' => [
+                        'type' => Types::boolean(),
+                        'args' => [
+                            'gameType' => Types::nonNull(Types::string())
+                        ],
+                        'resolve' => function($value, $args, $context, ResolveInfo $info) {
+                            if(empty($context->character))
+                                return null;
+
+                            return $context->character->isActiveTrait($value->id(), $args['gameType']);
+                        }
+                    ]
                 ];
             },
             'resolveField' => function($value, $args, $context, ResolveInfo $info) {
