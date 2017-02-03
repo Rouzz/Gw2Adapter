@@ -1,0 +1,34 @@
+{
+  character(name: "Sethorus"){
+    name
+    race
+    age
+    level
+    profession {
+      id
+      name
+      icon
+      iconBig
+      specializations{
+        id
+        name
+        icon
+        pvpActive:isActive(gameType: "pvp")
+        minorTraits{
+          id
+          name
+          description
+          tier
+        }
+        majorTraits{
+          id
+          name
+          description
+          tier
+          pvpActive:isActive(gameType: "pvp")
+          pveActive:isActive(gameType: "pve")
+        }
+      }
+    }
+  }
+}
