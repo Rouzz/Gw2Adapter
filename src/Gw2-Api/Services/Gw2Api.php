@@ -46,4 +46,16 @@ class Gw2Api
         $content = file_get_contents('https://api.guildwars2.com/v2/professions/'.$name);
         return json_decode($content, true);
     }
+
+    public static function getSpecialization($id)
+    {
+        $content = file_get_contents('https://api.guildwars2.com/v2/specializations/'.$id);
+        return json_decode($content, true);
+    }
+
+    public static function getTraits($ids)
+    {
+        $content = file_get_contents('https://api.guildwars2.com/v2/traits/'.implode(",", $ids));
+        return json_decode($content, true);
+    }
 }

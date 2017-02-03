@@ -3,6 +3,7 @@
 namespace rvionny\Gw2Adapter\Model;
 
 use rvionny\Gw2Adapter\Services\Gw2Api;
+use rvionny\Gw2Adapter\Services\SpecializationFactory;
 
 /**
  * Created by PhpStorm.
@@ -17,11 +18,13 @@ class Profession
     protected $icon;
     protected $iconBig;
     protected $specializations;
+
     protected $loaded;
 
     public function __construct($id)
     {
         $this->id = $id;
+        $this->specializations = array();
         $this->loaded = false;
     }
 
@@ -45,6 +48,10 @@ class Profession
         $this->name = $data['name'];
         $this->icon = $data['icon'];
         $this->iconBig = $data['icon_big'];
+
+        foreach ($data['specializations'] as $specialization) {
+            $this->specializations[] = SpecializationFactory::getSpecialization($specialization);
+        }
 
         $this->loaded = true;
     }
